@@ -4,6 +4,10 @@ pipeline {
     stage('archive') {
       steps {
         echo 'Pipeline run!'
+        withGradle() {
+          build 'build'
+        }
+
       }
     }
 
