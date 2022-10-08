@@ -1,9 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('build') {
       steps {
-        sleep 1
+        build(job: 'compile', propagate: true, quietPeriod: 5, wait: true)
+      }
+    }
+
+    stage('archive') {
+      steps {
+        archiveArtifacts(defaultExcludes: true, onlyIfSuccessful: true, artifacts: 'bin/*.jar')
       }
     }
 
